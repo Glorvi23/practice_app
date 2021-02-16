@@ -4,21 +4,19 @@ import Col from "../../components/Col";
 import Row from "../../components/Row";
 
 const Signup = () => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
- 
-    console.log(state.name, state.password);
-  };
+  const [username, setUsername] = useState();
+  const [password, setPassword] = useState();
 
-  const [state, setState] = useState({
-    name: "Alan",
-    password: "johnny^65",
-  });
+  const handleSubmit = e => {
+    e.preventDefault();
+    console.log("username is " + username);
+    console.log("password is " + password);
+  };
 
   return (
     <div>
       <div className="mt-4">
-        <h2>Sign Up</h2>
+        <h2>Welcome to Wikipedia Searcher!</h2>
       </div>
       <form onSubmit={handleSubmit}>
         <Container className="mt-3 px-5">
@@ -29,11 +27,7 @@ const Signup = () => {
                 type="text"
                 placeholder="Username"
                 name="username"
-                value={state.name}
-                onChange={(e) => {
-                  // setState("Bob");
-                  setState(e.target.value);
-                }}
+                onChange={e => setUsername(e.target.value)}
               />
             </Col>
           </Row>
@@ -44,10 +38,7 @@ const Signup = () => {
                 type="password"
                 placeholder="Password"
                 name="password"
-                value={state.password}
-                onChange={(e) => {
-                  setState(e.target.value);
-                }}
+                onChange={e => setPassword(e.target.value)}
               />
             </Col>
           </Row>
@@ -56,11 +47,8 @@ const Signup = () => {
           </button>
         </Container>
         <Container className="mt-4">
-          <h3>Hello {state.name}!</h3>
-          <p>
-            I probably shouldn't tell you this, but your password is{" "}
-            {state.password}!
-          </p>
+          <h3>Hello {username}!</h3>
+          <p>I probably shouldn't tell you this, but your password is {password}!</p>
         </Container>
       </form>
     </div>
